@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Oluşan Ders Programı</title>
+</head>
+<body>
+    <h1>Ders Programı</h1>
+    <ul>
+        {% for ders in dersler %}
+            <li>
+                <strong>{{ ders.ad }}</strong> - {{ ders.ogretmen }}<br>
+                Sınıf: {{ ders.derslik }}<br>
+                Zaman: {{ ders.zaman }}<br>
+                Tür: {{ ders.tur }}
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'program_olustur' %}">Yeni Program Oluştur</a>
+</body>
+</html>

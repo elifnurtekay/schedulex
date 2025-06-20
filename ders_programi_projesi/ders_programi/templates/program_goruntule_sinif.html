@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Ders Programı (Sınıflara Göre)</h2>
+{% for sinif in siniflar %}
+    <h3>
+        {% if sinif == 1 %}1. Sınıf
+        {% elif sinif == 2 %}2. Sınıf
+        {% elif sinif == 3 %}3. Sınıf
+        {% elif sinif == 4 %}4. Sınıf
+        {% else %}{{ sinif }}. Sınıf
+        {% endif %}
+    </h3>
+    <table class="table table-bordered mb-5">
+        <thead>
+            <tr>
+                <th>Saat / Gün</th>
+                {% for gun in gunler %}
+                    <th>{{ gun }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for saat in saatler %}
+            <tr>
+                <td><b>{{ saat }}</b></td>
+                {% for gun in gunler %}
+                    <td>
+                        {% for p in sinif_programlari.sinif %}
+                            {% if p.date == gun and p.time == saat %}
+                                <b>{{ p.ders.ders_adi }}</b><br>
+                                {{ p.derslik.kod }}<br>
+                                {{ p.sorumlu.isim }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endblock %}

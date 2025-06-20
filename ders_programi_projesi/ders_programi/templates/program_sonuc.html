@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Program Atama Sonucu</h2>
+{% if atamalar %}
+    <div class="alert alert-success">Ders programı başarıyla oluşturuldu!</div>
+{% endif %}
+{% if kalan_dersler %}
+    <div class="alert alert-warning">
+        <strong>Atanamayan Dersler:</strong>
+        <ul>
+        {% for ders, nedenler in kalan_dersler %}
+            <li>
+                <b>{{ ders.ders_adi }}</b> ({{ ders.ders_kodu }}) &rarr;
+                {% for neden in nedenler %}{{ neden }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+<a class="btn btn-secondary" href="{% url 'program_goruntule' %}">Ders Programını Görüntüle</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ders Programı Girişi</title>
+</head>
+<body>
+    <h1>Ders Bilgisi Ekle</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        <fieldset>
+            <legend>Ders Bilgileri</legend>
+            {{ ders_form.as_p }}
+        </fieldset>
+
+        <fieldset>
+            <legend>Derslik Bilgisi</legend>
+            {{ derslik_form.as_p }}
+        </fieldset>
+
+        <button type="submit">Ekle ve Program Oluştur</button>
+    </form>
+</body>
+</html>
+

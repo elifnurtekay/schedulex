@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Derslikler</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Kod</th>
+            <th>Kapasite</th>
+            <th>Tür</th>
+            <th>Blok</th>
+            <th>Engelli Erişimi</th>
+            <th>Laboratuvar Uygunluğu</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for d in derslikler %}
+        <tr>
+            <td>{{ d.kod }}</td>
+            <td>{{ d.kapasite }}</td>
+            <td>{{ d.get_tur_display }}</td>
+            <td>{{ d.blok }}</td>
+            <td>{{ d.erisilebilirlik|yesno:"Evet,Hayır" }}</td>
+            <td>{{ d.laboratuvar_uygunlugu|yesno:"Evet,Hayır" }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6" class="text-center">Henüz derslik eklenmedi.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
